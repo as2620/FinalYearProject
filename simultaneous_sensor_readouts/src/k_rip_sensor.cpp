@@ -69,8 +69,6 @@ void KRipSensor::read()
 {
     pcnt_counter_pause(this->pulse_counter_unit);
 
-    const int64_t esp_time_now = esp_timer_get_time();
-
     int16_t pulses = 0;    
     uint32_t mult = mult_pulses;
 
@@ -88,3 +86,5 @@ void KRipSensor::read()
 
     start_pulse_counter();              
 }
+
+//----------------------------------------------------------------------------------

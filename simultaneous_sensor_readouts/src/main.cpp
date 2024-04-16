@@ -1,25 +1,6 @@
-#include "Arduino.h"
-#include "stdio.h"     
-
-//----------------------------------------------------------------------------------
 
 #include "../include/k_rip_sensor.hpp"
-
-//----------------------------------------------------------------------------------
-
-// Pulse Counters in the ESP32 
-// This piece of code makes use of the Pulse Counter Peripheral in the ESP32. The 
-// Pulse Counters count the number edges of the waveform that pass during a set interval 
-// of time. This changes as the frequency of the waveform changes. 
-
-// How Do Pulse Counters Work? 
-// Pulse Counters in the ESP32 require the programmer to select a unit. 
-// A unit has two channels, one that can increment the counter and the other that can decrement 
-// the counter on a falling or rising edge.
-// Pulse Counters can be configured to do something on either or both edges. 
-// The Control Signal is used to control the counting mode of the edge signals that are 
-// attached to the same channel. 
-
+#include "../include/gsr_sensor.hpp"
 
 //----------------------------------------------------------------------------------
 
@@ -33,10 +14,24 @@
 #define PCNT_INPUT_CTRL_IO_1    GPIO_NUM_33             // Set Pulse Counter Control GPIO pin - HIGH = count up, LOW = count down  
 #define PCNT_H_LIM_VAL          32000                   // Overflow of Pulse Counter 
 
+uint8_t GSR_PIN = 25;
+
+//---------------------------------------------------------------------------------
+
+uint32_t LOOP_DELAY = 10;
+
+uint32_t GSR_LOOP_COUNTER = 0;
+uint32_t PPG_LOOP_COUNTER = 0;
+
+uint32_t GSR_LOOP_COUNTER_LIMIT = 50 / LOOP_DELAY;
+uint32_t PPG_LOOP_COUNTER_LIMIT = 0;
+
 //---------------------------------------------------------------------------------
 
 KRipSensor top_coil(PCNT_COUNT_UNIT_0, PCNT_COUNT_CHANNEL, PCNT_INPUT_SIG_IO_0, PCNT_INPUT_CTRL_IO_0);
 KRipSensor bottom_coil(PCNT_COUNT_UNIT_1, PCNT_COUNT_CHANNEL, PCNT_INPUT_SIG_IO_1, PCNT_INPUT_CTRL_IO_1);
+
+GsrSensor gsr_sensor(GSR_PIN);
 
 //---------------------------------------------------------------------------------
 
@@ -77,11 +72,20 @@ void initialiseCoils()
 
 //---------------------------------------------------------------------------------
 
+void intialiseSensors()
+{
+  initialiseCoils();
+}
+
+//----------------------------------------------------------------------------------
+
 void writeDataToSerial()
 {
   Serial.print(top_coil.frequency);
   Serial.print(" ");
-  Serial.println(bottom_coil.frequency);
+  Serial.print(bottom_coil.frequency);
+  Serial.print(" ");
+  Serial.println(gsr_sensor.averaged_gsr_value);
 }
 
 //----------------------------------------------------------------------------------
@@ -89,19 +93,35 @@ void writeDataToSerial()
 void setup()
 {
   Serial.begin(115200);
-  initialiseCoils();  
+  intialiseSensors();  
 }
 
 //----------------------------------------------------------------------------------
 
 void loop()
 {
+
+  // fast
   top_coil.read();
+  
+  // fast
   bottom_coil.read();
+
+  // 50ms
+  if (GSR_LOOP_COUNTER < GSR_LOOP_COUNTER_LIMIT)
+  {
+    gsr_sensor.read();
+    GSR_LOOP_COUNTER++;
+  }
+  else
+  {
+    gsr_sensor.calculateAverageValue();
+    GSR_LOOP_COUNTER = 0;
+  }
 
   writeDataToSerial();
   
-  delay(10); // in milliseconds
+  delay(LOOP_DELAY); // in milliseconds
 }
 
 //----------------------------------------------------------------------------------
