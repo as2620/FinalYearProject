@@ -49,18 +49,8 @@ void KRipSensor::intialise()
     // Clear PCNT unit                                               
     pcnt_counter_clear(this->pulse_counter_unit);                                               
 
-    // Enable event to watch - max count
-    pcnt_event_enable(this->pulse_counter_unit, PCNT_EVT_H_LIM);     
-
-    // Enable interrupts for Pulse Counter unit
-    pcnt_intr_enable(this->pulse_counter_unit);                                                 
-}
-
-//----------------------------------------------------------------------------------
-
-void KRipSensor::start_pulse_counter()
-{
-    pcnt_counter_resume(this->pulse_counter_unit);
+    // Start pulse counter
+    pcnt_counter_resume(this->pulse_counter_unit);                                                
 }
 
 //----------------------------------------------------------------------------------
@@ -70,21 +60,24 @@ void KRipSensor::read()
     pcnt_counter_pause(this->pulse_counter_unit);
 
     int16_t pulses = 0;    
-    uint32_t mult = mult_pulses;
+    // uint32_t mult = mult_pulses;
 
     // Clear overflow counter
-    mult_pulses = 0;    
+    // mult_pulses = 0;    
 
     // Read Pulse Counter value                                                  
     pcnt_get_counter_value(this->pulse_counter_unit, &pulses);                                                                   
 
     // Calculate the frequency based of the pulse counter readings
-    frequency = (pulses + (mult * overflow)) ;                                                         
-    
+    // frequency = (pulses + (mult * overflow)) ;                                                         
+
+    frequency = pulses;
+
     // Clear Pulse Counter
     pcnt_counter_clear(this->pulse_counter_unit);   
 
-    start_pulse_counter();              
+    // Start pulse counter
+    pcnt_counter_resume(this->pulse_counter_unit);         
 }
 
 //----------------------------------------------------------------------------------

@@ -31,7 +31,6 @@ class KRipSensor
     public: 
         KRipSensor(pcnt_unit_t pulse_counter_unit, pcnt_channel_t pulse_counter_channel, uint8_t pulse_counter_signal, uint8_t pulse_counter_control);
         void intialise();
-        void start_pulse_counter();
         void read();
 
         uint32_t mult_pulses = 0;
