@@ -3,61 +3,91 @@
 
 //----------------------------------------------------------------------------------
 
-void IRAM_ATTR timerIsr()
+void CCS_1_Task(void *pvParameters)
 {
-    // xSemaphoreTake(k_rip_mutex, portMAX_DELAY);
-    top_coil.read();
-    bottom_coil.read();
-    // xSemaphoreGive(k_rip_mutex);
-}
-
-//----------------------------------------------------------------------------------
-
-void PPG_Task(void *pvParameters)
-{
-  Serial.print("Task 1 running on core ");
+  Serial.print("Task1 running on core ");
   Serial.println(xPortGetCoreID());
-  while (1)
+
+  if(!ccs_1.begin())
   {
-    // xSemaphoreTake(ppg_mutex, portMAX_DELAY);
-    ppg_sensor.read();
-    // xSemaphoreGive(ppg_mutex);
+    Serial.println("Failed to start sensor! Please check your wiring.");
+    while(1);
+  }
+
+  ccs_1.setDriveMode(CCS811_DRIVE_MODE_250MS);
+  while(!ccs_1.available());
+
+  while(1)
+  {
+    if(ccs_1.available())
+    {
+      if(!ccs_1.readData())
+      {
+        // Print timestamp
+        // Serial.print("Sensor 1");
+        // Serial.print(" ");
+        // Serial.print(esp_timer_get_time());
+        // Serial.print(" ");
+        // // Print CO2 value
+        // Serial.print(ccs_1.geteCO2());
+        // Serial.print(" ");  
+        // // Print TVOC value
+        // Serial.println(ccs_1.getTVOC());
+
+        co2_value = ccs_1.geteCO2();
+        voc_value = ccs_1.getTVOC();
+      }
+    }
   }
 }
 
 //----------------------------------------------------------------------------------
 
-void GSR_Task(void *pvParameters)
+void CCS_2_Task(void *pvParameters)
 {
-  Serial.print("Task 2 running on core ");
+  Serial.print("Task2 running on core ");
   Serial.println(xPortGetCoreID());
-
-  while (1)
+  
+  // (2) Intialise the second CCS sensor (using the second I2C bus
+  if(!ccs_2.begin(0x5A, &I2C_CCS_2))
   {
-    if (GSR_LOOP_COUNTER < GSR_LOOP_COUNTER_LIMIT)
+    Serial.println("Failed to start sensor! Please check your wiring.");
+    while(1);
+  }
+
+  // (3) Set the measurement mode
+  ccs_2.setDriveMode(CCS811_DRIVE_MODE_250MS);
+  
+  // (4) Wait for the sensor to be ready
+  while(!ccs_2.available());
+
+  while(1)
+  {
+    if(ccs_2.available())
     {
-      // xSemaphoreTake(gsr_mutex, portMAX_DELAY);
-      gsr_sensor.read();
-      // xSemaphoreGive(gsr_mutex);
+      if (!ccs_2.readData())
+      {
+        // Print timestamp
+        // Serial.print("Sensor 2");
+        // Serial.print(" ");
+        // Serial.print(esp_timer_get_time());
+        // Serial.print(" ");
+        // // Print CO2 value
+        // Serial.print(ccs_2.geteCO2());
+        // Serial.print(" ");  
+        // // Print TVOC value
+        // Serial.println(ccs_2.getTVOC());
 
-      GSR_LOOP_COUNTER++;
+        co2_value = ccs_2.geteCO2();
+        voc_value = ccs_2.getTVOC();
+      }
     }
-    else
-    {
-      // xSemaphoreTake(gsr_mutex, portMAX_DELAY);
-      gsr_sensor.calculateAverageValue();
-      // xSemaphoreGive(gsr_mutex);
-
-      GSR_LOOP_COUNTER = 0;
-    }
-
-    vTaskDelay(pdMS_TO_TICKS(GSR_LOOP_DELAY));
   }
 }
 
 //----------------------------------------------------------------------------------
 
-void initWiFi() 
+void Init_Wifi()
 {
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
   Serial.print("Connecting to WiFi ..");
@@ -71,9 +101,9 @@ void initWiFi()
 
 //----------------------------------------------------------------------------------
 
-// Function that gets current epoch time
-unsigned long getTime() 
+unsigned long Get_Time() 
 {
+  // Function that gets current epoch time
   time_t now;
   struct tm timeinfo;
   if (!getLocalTime(&timeinfo)) {
@@ -98,17 +128,14 @@ void Database_Task(void *pvParameters)
       sendDataPrevMillis = millis();
 
       //Get current timestamp
-      timestamp = getTime();
+      timestamp = Get_Time();
       Serial.print ("time: ");
       Serial.println (timestamp);
 
       parentPath= databasePath + "/" + String(timestamp);
 
-      json.set(chestCoilPath.c_str(), String(top_coil.frequency));
-      json.set(abdomenCoilPath.c_str(), String(bottom_coil.frequency));
-      json.set(gsrPath.c_str(), String(gsr_sensor.averaged_gsr_value));
-      json.set(ppgRedPath.c_str(), String(ppg_sensor.red_value));
-      json.set(ppgIrPath.c_str(), String(ppg_sensor.ir_value));
+      json.set(co2Path.c_str(), String(co2_value));
+      json.set(vocPath.c_str(), String(voc_value));
       json.set(timePath, String(timestamp));
       Serial.printf("Set json... %s\n", Firebase.RTDB.setJSON(&fbdo, parentPath.c_str(), &json) ? "ok" : fbdo.errorReason().c_str());
     }
@@ -117,41 +144,24 @@ void Database_Task(void *pvParameters)
 
 //----------------------------------------------------------------------------------
 
-void setup()
+void setup() 
 {
   Serial.begin(115200);
-  Serial.println("Simultanous K-RIP, GSR and PPG Sensor Data Acquisition");
+  Serial.println("CCS811 Double Test");
 
-  // -------------------------------- PPG Sensor --------------------------------
+  //-------------------------------- Setup I2C Communication --------------------------------
 
-  if (!ppg_sensor.intialise())
-  {
-    Serial.println("ERROR: PPG Sensor not initialised");
-  }
-  else
-  {
-    Serial.println("LOG: PPG Sensor initialised");
-  };
+  // First CSS Sensor:
+  // (1) Enable I2C
+  Wire.begin(); 
 
-  // -------------------------------- K RIP Sensor --------------------------------
-
-  top_coil.intialise();
-  bottom_coil.intialise();
-
-  k_rip_timer = timerBegin(0, 80, true);
-  timerAttachInterrupt(k_rip_timer, &timerIsr, true);
-  timerAlarmWrite(k_rip_timer, 10000, true); // genrerate interrupt every 10ms
-  timerAlarmEnable(k_rip_timer);
-
-  // -------------------------------- Mutexes --------------------------------
-
-  // k_rip_mutex = xSemaphoreCreateMutex();
-  // ppg_mutex = xSemaphoreCreateMutex();
-  // gsr_mutex = xSemaphoreCreateMutex();
+  // Second CSS Sensor:
+  // (1) Enable I2C since the two sensors have the same address
+  I2C_CCS_2.begin(I2C_SDA_2, I2C_SCL_2, 400);
 
   // -------------------------------- WiFi and Database --------------------------------
 
-  initWiFi();
+  Init_Wifi();
   configTime(0, 0, ntpServer);
 
   // Assign the api key (required)
@@ -188,42 +198,44 @@ void setup()
   Serial.println(uid);
 
   // Update database path
-  databasePath = "/UsersData/" + uid + "/shirt_data";
+  databasePath = "/UsersData/" + uid + "/mask_data";
 
   // -------------------------------- Tasks --------------------------------
+  // Create a task for the first sensor
+  xTaskCreatePinnedToCore(
+    CCS_1_Task, // Task function
+    "CCS_1_Task", // Task name
+    10000, // Stack size
+    NULL, // Parameters
+    2, // Priority
+    &CCS_1_Task_Handle, // Task handle
+    0 // Core
+  );
 
+  // Create a task for the second sensor
+  xTaskCreatePinnedToCore(
+    CCS_2_Task, // Task function
+    "CCS_2_Task", // Task name
+    10000, // Stack size
+    NULL, // Parameters
+    2, // Priority
+    &CCS_2_Task_Handle, // Task handle
+    1 // Core
+  );
+
+  // Create a task for the database
   xTaskCreate(
     Database_Task, // Task function
     "Database_Task", // Task name
     10000, // Stack size
     NULL, // Parameters
-    0, // Priority
+    3, // Priority
     &Database_Task_Handle // Task handle
   );
-
-  xTaskCreate(
-    GSR_Task, // Task function
-    "GSR_Task", // Task name
-    10000, // Stack size
-    NULL, // Parameters
-    1, // Priority
-    &GSR_Task_Handle // Task handle
-  );
-
-  xTaskCreate(
-    PPG_Task, // Task function
-    "PPG_Task", // Task name
-    10000, // Stack size
-    NULL, // Parameters
-    2, // Priority
-    &PPG_Task_Handle // Task handle
-  );
-
-  vTaskStartScheduler();
 }
 
 //----------------------------------------------------------------------------------
 
-void loop(){}
+void loop() {}
 
 //----------------------------------------------------------------------------------
