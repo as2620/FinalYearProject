@@ -53,10 +53,10 @@ PpgSensor ppg_sensor(PPG_LED_BRIGHTNESS, PPG_SAMPLE_AVERAGE, PPG_LED_MODE, PPG_S
 
 hw_timer_t *k_rip_timer = NULL;
 
-TaskHandle_t PPG_Task_Handle = NULL;
-TaskHandle_t GSR_Task_Handle = NULL;
+TaskHandle_t PPG_Task_Handle;
+TaskHandle_t GSR_Task_Handle;
 
-TaskHandle_t Database_Task_Handle = NULL;
+TaskHandle_t Database_Task_Handle;
 
 //---------------------------------------------------------------------------------
 

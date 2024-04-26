@@ -85,21 +85,12 @@ String getTimestamp() {
 
 void Database_Task(void *pvParameters)
 {
-  Serial.print("Task 3 running on core ");
-  Serial.println(xPortGetCoreID());
-
   while (1)
   {   
-    
-    // Send new readings to database
-    if (Firebase.ready() && (millis() - sendDataPrevMillis > timerDelay || sendDataPrevMillis == 0))
-    {
       String timestamp_string = getTimestamp();
-      Serial.printf("Timestamp: %s \n", timestamp_string.c_str());
       
       parentPath = databasePath + "/" + timestamp_string;
       
-      unsigned long start_set= millis(); 
       json.set(chestCoilPath.c_str(), String(top_coil.frequency));
       json.set(abdomenCoilPath.c_str(), String(bottom_coil.frequency));
       json.set(gsrPath.c_str(), String(gsr_sensor.averaged_gsr_value));
@@ -108,13 +99,9 @@ void Database_Task(void *pvParameters)
       json.set(timePath, timestamp_string);
 
       // Send data to database
-      unsigned long start_send = millis(); 
-      Firebase.RTDB.setJSON(&fbdo, parentPath.c_str(), &json);
-      unsigned long end = millis();
-      Serial.printf("Database Set Time: %d ms\n", end - start_set);
-      Serial.printf("Database Send Time: %d ms\n", end - start_send);
+      Firebase.RTDB.setJSONAsync(&fbdo, parentPath.c_str(), &json);
 
-    }
+      vTaskDelay(pdMS_TO_TICKS(10));
   }
 }
 

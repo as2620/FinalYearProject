@@ -1,0 +1,1486 @@
+{
+  "UsersData": {
+    "GS5IERwOapdXlupUOqk5y52Vb5m1": {
+      "mask_data": {
+        "1713791859": {
+          "CO2": "492",
+          "VOC": "14",
+          "timestamp": "1713791859"
+        },
+        "1713791860": {
+          "CO2": "678",
+          "VOC": "42",
+          "timestamp": "1713791860"
+        },
+        "1713791861": {
+          "CO2": "591",
+          "VOC": "29",
+          "timestamp": "1713791861"
+        },
+        "1713791862": {
+          "CO2": "486",
+          "VOC": "13",
+          "timestamp": "1713791862"
+        },
+        "1713791863": {
+          "CO2": "553",
+          "VOC": "23",
+          "timestamp": "1713791863"
+        },
+        "1713791864": {
+          "CO2": "591",
+          "VOC": "29",
+          "timestamp": "1713791864"
+        },
+        "1713791865": {
+          "CO2": "569",
+          "VOC": "25",
+          "timestamp": "1713791865"
+        },
+        "1713791867": {
+          "CO2": "545",
+          "VOC": "22",
+          "timestamp": "1713791867"
+        },
+        "1713791868": {
+          "CO2": "588",
+          "VOC": "28",
+          "timestamp": "1713791868"
+        },
+        "1713791869": {
+          "CO2": "575",
+          "VOC": "26",
+          "timestamp": "1713791869"
+        },
+        "1713791870": {
+          "CO2": "497",
+          "VOC": "14",
+          "timestamp": "1713791870"
+        },
+        "1713791871": {
+          "CO2": "473",
+          "VOC": "11",
+          "timestamp": "1713791871"
+        },
+        "1713791872": {
+          "CO2": "520",
+          "VOC": "18",
+          "timestamp": "1713791872"
+        },
+        "1713791873": {
+          "CO2": "420",
+          "VOC": "3",
+          "timestamp": "1713791873"
+        },
+        "1713791874": {
+          "CO2": "425",
+          "VOC": "3",
+          "timestamp": "1713791874"
+        },
+        "1713791875": {
+          "CO2": "441",
+          "VOC": "6",
+          "timestamp": "1713791875"
+        },
+        "1713791876": {
+          "CO2": "400",
+          "VOC": "0",
+          "timestamp": "1713791876"
+        },
+        "1713791877": {
+          "CO2": "400",
+          "VOC": "0",
+          "timestamp": "1713791877"
+        },
+        "1713791878": {
+          "CO2": "400",
+          "VOC": "0",
+          "timestamp": "1713791878"
+        },
+        "1713791879": {
+          "CO2": "423",
+          "VOC": "3",
+          "timestamp": "1713791879"
+        },
+        "1713791880": {
+          "CO2": "502",
+          "VOC": "15",
+          "timestamp": "1713791880"
+        },
+        "1713791881": {
+          "CO2": "428",
+          "VOC": "4",
+          "timestamp": "1713791881"
+        },
+        "1713791882": {
+          "CO2": "448",
+          "VOC": "7",
+          "timestamp": "1713791882"
+        },
+        "1713791883": {
+          "CO2": "564",
+          "VOC": "24",
+          "timestamp": "1713791883"
+        },
+        "1713791884": {
+          "CO2": "589",
+          "VOC": "28",
+          "timestamp": "1713791884"
+        },
+        "1713791885": {
+          "CO2": "485",
+          "VOC": "12",
+          "timestamp": "1713791885"
+        },
+        "1713791886": {
+          "CO2": "448",
+          "VOC": "7",
+          "timestamp": "1713791886"
+        },
+        "1713791887": {
+          "CO2": "560",
+          "VOC": "24",
+          "timestamp": "1713791887"
+        },
+        "1713791889": {
+          "CO2": "491",
+          "VOC": "13",
+          "timestamp": "1713791889"
+        },
+        "1713791890": {
+          "CO2": "543",
+          "VOC": "21",
+          "timestamp": "1713791890"
+        },
+        "1713791891": {
+          "CO2": "560",
+          "VOC": "24",
+          "timestamp": "1713791891"
+        },
+        "1713791892": {
+          "CO2": "581",
+          "VOC": "27",
+          "timestamp": "1713791892"
+        },
+        "1713791893": {
+          "CO2": "491",
+          "VOC": "13",
+          "timestamp": "1713791893"
+        },
+        "1713791894": {
+          "CO2": "463",
+          "VOC": "9",
+          "timestamp": "1713791894"
+        },
+        "1713791896": {
+          "CO2": "400",
+          "VOC": "0",
+          "timestamp": "1713791896"
+        },
+        "1713870155": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870155"
+        },
+        "1713870157": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870157"
+        },
+        "1713870158": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870158"
+        },
+        "1713870159": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870159"
+        },
+        "1713870160": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870160"
+        },
+        "1713870164": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870164"
+        },
+        "1713870166": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870166"
+        },
+        "1713870167": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870167"
+        },
+        "1713870168": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870168"
+        },
+        "1713870169": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870169"
+        },
+        "1713870173": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870173"
+        },
+        "1713870175": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870175"
+        },
+        "1713870176": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870176"
+        },
+        "1713870177": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870177"
+        },
+        "1713870182": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870182"
+        },
+        "1713870184": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870184"
+        },
+        "1713870185": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870185"
+        },
+        "1713870186": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870186"
+        },
+        "1713870191": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870191"
+        },
+        "1713870192": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870192"
+        },
+        "1713870193": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870193"
+        },
+        "1713870194": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870194"
+        },
+        "1713870195": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870195"
+        },
+        "1713870199": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870199"
+        },
+        "1713870200": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870200"
+        },
+        "1713870201": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870201"
+        },
+        "1713870202": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870202"
+        },
+        "1713870203": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870203"
+        },
+        "1713870204": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870204"
+        },
+        "1713870208": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870208"
+        },
+        "1713870211": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870211"
+        },
+        "1713870212": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870212"
+        },
+        "1713870213": {
+          "CO2": "0",
+          "VOC": "0",
+          "timestamp": "1713870213"
+        }
+      },
+      "shirt_data": {
+        "1713874117": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "153731",
+          "ppg_red": "70224",
+          "timestamp": "1713874117"
+        },
+        "1713874118": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "153703",
+          "ppg_red": "70194",
+          "timestamp": "1713874118"
+        },
+        "1713874119": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "153793",
+          "ppg_red": "70240",
+          "timestamp": "1713874119"
+        },
+        "1713874120": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "153873",
+          "ppg_red": "70379",
+          "timestamp": "1713874120"
+        },
+        "1713874121": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "153975",
+          "ppg_red": "70424",
+          "timestamp": "1713874121"
+        },
+        "1713874122": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "153946",
+          "ppg_red": "70461",
+          "timestamp": "1713874122"
+        },
+        "1713874123": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154111",
+          "ppg_red": "70509",
+          "timestamp": "1713874123"
+        },
+        "1713874124": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154155",
+          "ppg_red": "70520",
+          "timestamp": "1713874124"
+        },
+        "1713874125": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154099",
+          "ppg_red": "70513",
+          "timestamp": "1713874125"
+        },
+        "1713874126": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "153975",
+          "ppg_red": "70399",
+          "timestamp": "1713874126"
+        },
+        "1713874127": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "153610",
+          "ppg_red": "70225",
+          "timestamp": "1713874127"
+        },
+        "1713874130": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "153832",
+          "ppg_red": "70442",
+          "timestamp": "1713874130"
+        },
+        "1713874131": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "153935",
+          "ppg_red": "70420",
+          "timestamp": "1713874131"
+        },
+        "1713874132": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "153859",
+          "ppg_red": "70409",
+          "timestamp": "1713874132"
+        },
+        "1713874133": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "153785",
+          "ppg_red": "70398",
+          "timestamp": "1713874133"
+        },
+        "1713874134": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "153717",
+          "ppg_red": "70331",
+          "timestamp": "1713874134"
+        },
+        "1713874135": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "153746",
+          "ppg_red": "70324",
+          "timestamp": "1713874135"
+        },
+        "1713874136": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "153624",
+          "ppg_red": "70303",
+          "timestamp": "1713874136"
+        },
+        "1713874137": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "153945",
+          "ppg_red": "70444",
+          "timestamp": "1713874137"
+        },
+        "1713874138": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154028",
+          "ppg_red": "70463",
+          "timestamp": "1713874138"
+        },
+        "1713874139": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154253",
+          "ppg_red": "70642",
+          "timestamp": "1713874139"
+        },
+        "1713874140": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154018",
+          "ppg_red": "70578",
+          "timestamp": "1713874140"
+        },
+        "1713874141": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "153632",
+          "ppg_red": "70307",
+          "timestamp": "1713874141"
+        },
+        "1713874142": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "153719",
+          "ppg_red": "70345",
+          "timestamp": "1713874142"
+        },
+        "1713874143": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "153628",
+          "ppg_red": "70324",
+          "timestamp": "1713874143"
+        },
+        "1713874144": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "153615",
+          "ppg_red": "70281",
+          "timestamp": "1713874144"
+        },
+        "1713874145": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "153824",
+          "ppg_red": "70396",
+          "timestamp": "1713874145"
+        },
+        "1713874146": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154008",
+          "ppg_red": "70504",
+          "timestamp": "1713874146"
+        },
+        "1713874147": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "153923",
+          "ppg_red": "70514",
+          "timestamp": "1713874147"
+        },
+        "1713874148": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154079",
+          "ppg_red": "70481",
+          "timestamp": "1713874148"
+        },
+        "1713874149": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "153901",
+          "ppg_red": "70527",
+          "timestamp": "1713874149"
+        },
+        "1713874150": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "153974",
+          "ppg_red": "70556",
+          "timestamp": "1713874150"
+        },
+        "1713874151": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154103",
+          "ppg_red": "70537",
+          "timestamp": "1713874151"
+        },
+        "1713874152": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "153967",
+          "ppg_red": "70540",
+          "timestamp": "1713874152"
+        },
+        "1713874153": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154116",
+          "ppg_red": "70695",
+          "timestamp": "1713874153"
+        },
+        "1713874154": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154219",
+          "ppg_red": "70852",
+          "timestamp": "1713874154"
+        },
+        "1713874155": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154430",
+          "ppg_red": "70947",
+          "timestamp": "1713874155"
+        },
+        "1713874156": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154482",
+          "ppg_red": "70956",
+          "timestamp": "1713874156"
+        },
+        "1713874157": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154497",
+          "ppg_red": "71040",
+          "timestamp": "1713874157"
+        },
+        "1713874158": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154638",
+          "ppg_red": "71035",
+          "timestamp": "1713874158"
+        },
+        "1713874159": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154664",
+          "ppg_red": "71179",
+          "timestamp": "1713874159"
+        },
+        "1713874161": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154814",
+          "ppg_red": "71259",
+          "timestamp": "1713874161"
+        },
+        "1713874162": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154832",
+          "ppg_red": "71351",
+          "timestamp": "1713874162"
+        },
+        "1713874163": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154739",
+          "ppg_red": "71308",
+          "timestamp": "1713874163"
+        },
+        "1713874164": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154831",
+          "ppg_red": "71339",
+          "timestamp": "1713874164"
+        },
+        "1713874165": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154726",
+          "ppg_red": "71301",
+          "timestamp": "1713874165"
+        },
+        "1713874166": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154737",
+          "ppg_red": "71277",
+          "timestamp": "1713874166"
+        },
+        "1713874167": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154617",
+          "ppg_red": "71223",
+          "timestamp": "1713874167"
+        },
+        "1713874169": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154553",
+          "ppg_red": "71105",
+          "timestamp": "1713874169"
+        },
+        "1713874170": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154649",
+          "ppg_red": "71191",
+          "timestamp": "1713874170"
+        },
+        "1713874171": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154659",
+          "ppg_red": "71251",
+          "timestamp": "1713874171"
+        },
+        "1713874172": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154653",
+          "ppg_red": "71203",
+          "timestamp": "1713874172"
+        },
+        "1713874173": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154768",
+          "ppg_red": "71236",
+          "timestamp": "1713874173"
+        },
+        "1713874174": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154508",
+          "ppg_red": "71188",
+          "timestamp": "1713874174"
+        },
+        "1713874175": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154891",
+          "ppg_red": "71394",
+          "timestamp": "1713874175"
+        },
+        "1713874176": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "155047",
+          "ppg_red": "71466",
+          "timestamp": "1713874176"
+        },
+        "1713874177": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "155003",
+          "ppg_red": "71473",
+          "timestamp": "1713874177"
+        },
+        "1713874178": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154918",
+          "ppg_red": "71496",
+          "timestamp": "1713874178"
+        },
+        "1713874179": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154961",
+          "ppg_red": "71411",
+          "timestamp": "1713874179"
+        },
+        "1713874180": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154941",
+          "ppg_red": "71367",
+          "timestamp": "1713874180"
+        },
+        "1713874184": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154970",
+          "ppg_red": "71303",
+          "timestamp": "1713874184"
+        },
+        "1713874185": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "155043",
+          "ppg_red": "71306",
+          "timestamp": "1713874185"
+        },
+        "1713874186": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154926",
+          "ppg_red": "71145",
+          "timestamp": "1713874186"
+        },
+        "1713874187": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154250",
+          "ppg_red": "70711",
+          "timestamp": "1713874187"
+        },
+        "1713874188": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154259",
+          "ppg_red": "70664",
+          "timestamp": "1713874188"
+        },
+        "1713874189": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154243",
+          "ppg_red": "70694",
+          "timestamp": "1713874189"
+        },
+        "1713874190": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154251",
+          "ppg_red": "70777",
+          "timestamp": "1713874190"
+        },
+        "1713874191": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154276",
+          "ppg_red": "70886",
+          "timestamp": "1713874191"
+        },
+        "1713874192": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154308",
+          "ppg_red": "70941",
+          "timestamp": "1713874192"
+        },
+        "1713874193": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154338",
+          "ppg_red": "71004",
+          "timestamp": "1713874193"
+        },
+        "1713874194": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154385",
+          "ppg_red": "71056",
+          "timestamp": "1713874194"
+        },
+        "1713874195": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154422",
+          "ppg_red": "71073",
+          "timestamp": "1713874195"
+        },
+        "1713874196": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154435",
+          "ppg_red": "71120",
+          "timestamp": "1713874196"
+        },
+        "1713874197": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154487",
+          "ppg_red": "71122",
+          "timestamp": "1713874197"
+        },
+        "1713874198": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "9",
+          "ppg_ir": "154585",
+          "ppg_red": "71249",
+          "timestamp": "1713874198"
+        },
+        "1713874199": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154502",
+          "ppg_red": "71216",
+          "timestamp": "1713874199"
+        },
+        "1713874200": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154459",
+          "ppg_red": "71197",
+          "timestamp": "1713874200"
+        },
+        "1713874201": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154535",
+          "ppg_red": "71214",
+          "timestamp": "1713874201"
+        },
+        "1713874202": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154504",
+          "ppg_red": "71246",
+          "timestamp": "1713874202"
+        },
+        "1713874203": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154593",
+          "ppg_red": "71317",
+          "timestamp": "1713874203"
+        },
+        "1713874204": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154713",
+          "ppg_red": "71363",
+          "timestamp": "1713874204"
+        },
+        "1713874205": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154625",
+          "ppg_red": "71303",
+          "timestamp": "1713874205"
+        },
+        "1713874206": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154697",
+          "ppg_red": "71363",
+          "timestamp": "1713874206"
+        },
+        "1713874207": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154710",
+          "ppg_red": "71387",
+          "timestamp": "1713874207"
+        },
+        "1713874208": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154534",
+          "ppg_red": "71300",
+          "timestamp": "1713874208"
+        },
+        "1713874209": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154602",
+          "ppg_red": "71308",
+          "timestamp": "1713874209"
+        },
+        "1713874210": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154484",
+          "ppg_red": "71307",
+          "timestamp": "1713874210"
+        },
+        "1713874211": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154481",
+          "ppg_red": "71297",
+          "timestamp": "1713874211"
+        },
+        "1713874212": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "8",
+          "ppg_ir": "154592",
+          "ppg_red": "71344",
+          "timestamp": "1713874212"
+        },
+        "1713874213": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154664",
+          "ppg_red": "71315",
+          "timestamp": "1713874213"
+        },
+        "1713874214": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154674",
+          "ppg_red": "71388",
+          "timestamp": "1713874214"
+        },
+        "1713874215": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154681",
+          "ppg_red": "71427",
+          "timestamp": "1713874215"
+        },
+        "1713874216": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154541",
+          "ppg_red": "71309",
+          "timestamp": "1713874216"
+        },
+        "1713874217": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154578",
+          "ppg_red": "71323",
+          "timestamp": "1713874217"
+        },
+        "1713874218": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154704",
+          "ppg_red": "71405",
+          "timestamp": "1713874218"
+        },
+        "1713874219": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154567",
+          "ppg_red": "71405",
+          "timestamp": "1713874219"
+        },
+        "1713874220": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154738",
+          "ppg_red": "71432",
+          "timestamp": "1713874220"
+        },
+        "1713874222": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154303",
+          "ppg_red": "71144",
+          "timestamp": "1713874222"
+        },
+        "1713874223": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154311",
+          "ppg_red": "71121",
+          "timestamp": "1713874223"
+        },
+        "1713874224": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154104",
+          "ppg_red": "70983",
+          "timestamp": "1713874224"
+        },
+        "1713874225": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154040",
+          "ppg_red": "70980",
+          "timestamp": "1713874225"
+        },
+        "1713874226": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154044",
+          "ppg_red": "71030",
+          "timestamp": "1713874226"
+        },
+        "1713874227": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154054",
+          "ppg_red": "70900",
+          "timestamp": "1713874227"
+        },
+        "1713874228": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154124",
+          "ppg_red": "70947",
+          "timestamp": "1713874228"
+        },
+        "1713874232": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154118",
+          "ppg_red": "71017",
+          "timestamp": "1713874232"
+        },
+        "1713874233": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154246",
+          "ppg_red": "71086",
+          "timestamp": "1713874233"
+        },
+        "1713874234": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154302",
+          "ppg_red": "71128",
+          "timestamp": "1713874234"
+        },
+        "1713874235": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154378",
+          "ppg_red": "71218",
+          "timestamp": "1713874235"
+        },
+        "1713874236": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154431",
+          "ppg_red": "71341",
+          "timestamp": "1713874236"
+        },
+        "1713874237": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154455",
+          "ppg_red": "71288",
+          "timestamp": "1713874237"
+        },
+        "1713874238": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154446",
+          "ppg_red": "71302",
+          "timestamp": "1713874238"
+        },
+        "1713874239": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154490",
+          "ppg_red": "71358",
+          "timestamp": "1713874239"
+        },
+        "1713874240": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154610",
+          "ppg_red": "71447",
+          "timestamp": "1713874240"
+        },
+        "1713874241": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154719",
+          "ppg_red": "71569",
+          "timestamp": "1713874241"
+        },
+        "1713874242": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154853",
+          "ppg_red": "71634",
+          "timestamp": "1713874242"
+        },
+        "1713874243": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154905",
+          "ppg_red": "71617",
+          "timestamp": "1713874243"
+        },
+        "1713874244": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154825",
+          "ppg_red": "71686",
+          "timestamp": "1713874244"
+        },
+        "1713874245": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154985",
+          "ppg_red": "71763",
+          "timestamp": "1713874245"
+        },
+        "1713874246": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154925",
+          "ppg_red": "71726",
+          "timestamp": "1713874246"
+        },
+        "1713874247": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154866",
+          "ppg_red": "71654",
+          "timestamp": "1713874247"
+        },
+        "1713874248": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154716",
+          "ppg_red": "71688",
+          "timestamp": "1713874248"
+        },
+        "1713874249": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154804",
+          "ppg_red": "71700",
+          "timestamp": "1713874249"
+        },
+        "1713874250": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154724",
+          "ppg_red": "71607",
+          "timestamp": "1713874250"
+        },
+        "1713874251": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "154842",
+          "ppg_red": "71705",
+          "timestamp": "1713874251"
+        },
+        "1713874252": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "155128",
+          "ppg_red": "71876",
+          "timestamp": "1713874252"
+        },
+        "1713874253": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "155263",
+          "ppg_red": "71904",
+          "timestamp": "1713874253"
+        },
+        "1713874254": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "3",
+          "ppg_ir": "155405",
+          "ppg_red": "71953",
+          "timestamp": "1713874254"
+        },
+        "1713874255": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "155495",
+          "ppg_red": "72075",
+          "timestamp": "1713874255"
+        },
+        "1713874256": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "155607",
+          "ppg_red": "72070",
+          "timestamp": "1713874256"
+        },
+        "1713874257": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "155740",
+          "ppg_red": "72233",
+          "timestamp": "1713874257"
+        },
+        "1713874258": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "155807",
+          "ppg_red": "72207",
+          "timestamp": "1713874258"
+        },
+        "1713874259": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "155837",
+          "ppg_red": "72271",
+          "timestamp": "1713874259"
+        },
+        "1713874260": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "155782",
+          "ppg_red": "72342",
+          "timestamp": "1713874260"
+        },
+        "1713874261": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "155765",
+          "ppg_red": "72250",
+          "timestamp": "1713874261"
+        },
+        "1713874262": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "155755",
+          "ppg_red": "72241",
+          "timestamp": "1713874262"
+        },
+        "1713874263": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "155775",
+          "ppg_red": "72196",
+          "timestamp": "1713874263"
+        },
+        "1713874264": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "155898",
+          "ppg_red": "72244",
+          "timestamp": "1713874264"
+        },
+        "1713874266": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "155782",
+          "ppg_red": "72206",
+          "timestamp": "1713874266"
+        },
+        "1713874267": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "155721",
+          "ppg_red": "72165",
+          "timestamp": "1713874267"
+        },
+        "1713874268": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "155825",
+          "ppg_red": "72381",
+          "timestamp": "1713874268"
+        },
+        "1713874269": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "155928",
+          "ppg_red": "72350",
+          "timestamp": "1713874269"
+        },
+        "1713874270": {
+          "abdomen_coil": "0",
+          "chest_coil": "0",
+          "gsr": "0",
+          "ppg_ir": "156077",
+          "ppg_red": "72423",
+          "timestamp": "1713874270"
+        }
+      }
+    }
+  }
+}
