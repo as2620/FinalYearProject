@@ -53,10 +53,10 @@ PpgSensor ppg_sensor(PPG_LED_BRIGHTNESS, PPG_SAMPLE_AVERAGE, PPG_LED_MODE, PPG_S
 
 hw_timer_t *k_rip_timer = NULL;
 
-TaskHandle_t PPG_Task_Handle;
-TaskHandle_t GSR_Task_Handle;
+TaskHandle_t PPG_Task_Handle = NULL;
+TaskHandle_t GSR_Task_Handle = NULL;
 
-TaskHandle_t Database_Task_Handle;
+TaskHandle_t Database_Task_Handle = NULL;
 
 //---------------------------------------------------------------------------------
 
@@ -72,23 +72,23 @@ TaskHandle_t Database_Task_Handle;
 #include <Wire.h>
 #include "time.h"
 
-// Provide the token generation process info.
+// Token Generation Process Info
 #include "addons/TokenHelper.h"
 // Provide the RTDB payload printing info and other helper functions.
 #include "addons/RTDBHelper.h"
 
-// Insert your network credentials
+// Network Credentials
 #define WIFI_SSID "arthika_laptop"
 #define WIFI_PASSWORD "12345678"
 
-// Insert Firebase project API Key
+// Firebase Project API Key
 #define API_KEY "AIzaSyD-stiJVk3e745eKPPHMfOQZZMozTBe-XQ"
 
-// Insert Authorized Email and Corresponding Password
+// Authorized Email and Corresponding Password
 #define USER_EMAIL "as2620@ic.ac.uk"
 #define USER_PASSWORD "fyp_esp_32"
 
-// Insert RTDB URLefine the RTDB URL
+// RTDB URLefine the RTDB URL
 #define DATABASE_URL "https://fyp-sensor-data-9b8bc-default-rtdb.europe-west1.firebasedatabase.app/"
 
 // Define Firebase objects
@@ -112,18 +112,16 @@ String timePath = "/timestamp";
 // Parent Node (to be updated in every loop)
 String parentPath;
 
-int timestamp;
 FirebaseJson json;
 
 const char* ntpServer = "pool.ntp.org";
 
-// BME280 sensor
-float temperature;
-float humidity;
-float pressure;
-
-// Timer variables (send new readings every three minutes)
+// Timer variables
 unsigned long sendDataPrevMillis = 0;
-unsigned long timerDelay = 10; // in milliseconds
+unsigned long timerDelay = 1; // in milliseconds
+
+float timestamp = 0;
+float timestamp_millis = 0;
+float prev_timestamp_millis = 0;   
 
 //----------------------------------------------------------------------------------

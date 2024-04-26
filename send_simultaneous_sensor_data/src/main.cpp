@@ -1,27 +1,24 @@
 
 #include "../include/main.hpp"
+#include <sys/time.h>
+#include <ctime>
 
 //----------------------------------------------------------------------------------
 
 void IRAM_ATTR timerIsr()
 {
-    // xSemaphoreTake(k_rip_mutex, portMAX_DELAY);
     top_coil.read();
     bottom_coil.read();
-    // xSemaphoreGive(k_rip_mutex);
 }
 
 //----------------------------------------------------------------------------------
 
 void PPG_Task(void *pvParameters)
 {
-  Serial.print("Task 1 running on core ");
-  Serial.println(xPortGetCoreID());
   while (1)
   {
-    // xSemaphoreTake(ppg_mutex, portMAX_DELAY);
     ppg_sensor.read();
-    // xSemaphoreGive(ppg_mutex);
+    vTaskDelay(pdMS_TO_TICKS(1));
   }
 }
 
@@ -29,16 +26,11 @@ void PPG_Task(void *pvParameters)
 
 void GSR_Task(void *pvParameters)
 {
-  Serial.print("Task 2 running on core ");
-  Serial.println(xPortGetCoreID());
-
   while (1)
   {
     if (GSR_LOOP_COUNTER < GSR_LOOP_COUNTER_LIMIT)
     {
-      // xSemaphoreTake(gsr_mutex, portMAX_DELAY);
       gsr_sensor.read();
-      // xSemaphoreGive(gsr_mutex);
 
       GSR_LOOP_COUNTER++;
     }
@@ -71,17 +63,22 @@ void initWiFi()
 
 //----------------------------------------------------------------------------------
 
-// Function that gets current epoch time
-unsigned long getTime() 
-{
-  time_t now;
-  struct tm timeinfo;
-  if (!getLocalTime(&timeinfo)) {
-    //Serial.println("Failed to obtain time");
-    return(0);
-  }
-  time(&now);
-  return now;
+// Function to generate timestamp with microsecond resolution
+String getTimestamp() {
+  // Get current time
+  struct timeval tv;
+  gettimeofday(&tv, NULL);
+
+  // Convert timestamp to datetime
+  time_t sec = tv.tv_sec;
+  struct tm *tm_info;
+  char datetime[26];
+  tm_info = localtime(&sec);
+  strftime(datetime, 26, "%Y-%m-%d %H:%M:%S", tm_info);
+
+  // Construct the timestamp string with microseconds
+  String timestamp = String(datetime) + "." + String(tv.tv_usec);
+  return timestamp;
 }
 
 //----------------------------------------------------------------------------------
@@ -92,25 +89,31 @@ void Database_Task(void *pvParameters)
   Serial.println(xPortGetCoreID());
 
   while (1)
-  {    
+  {   
+    
     // Send new readings to database
-    if (Firebase.ready() && (millis() - sendDataPrevMillis > timerDelay || sendDataPrevMillis == 0)){
-      sendDataPrevMillis = millis();
-
-      //Get current timestamp
-      timestamp = getTime();
-      Serial.print ("time: ");
-      Serial.println (timestamp);
-
-      parentPath= databasePath + "/" + String(timestamp);
-
+    if (Firebase.ready() && (millis() - sendDataPrevMillis > timerDelay || sendDataPrevMillis == 0))
+    {
+      String timestamp_string = getTimestamp();
+      Serial.printf("Timestamp: %s \n", timestamp_string.c_str());
+      
+      parentPath = databasePath + "/" + timestamp_string;
+      
+      unsigned long start_set= millis(); 
       json.set(chestCoilPath.c_str(), String(top_coil.frequency));
       json.set(abdomenCoilPath.c_str(), String(bottom_coil.frequency));
       json.set(gsrPath.c_str(), String(gsr_sensor.averaged_gsr_value));
       json.set(ppgRedPath.c_str(), String(ppg_sensor.red_value));
       json.set(ppgIrPath.c_str(), String(ppg_sensor.ir_value));
-      json.set(timePath, String(timestamp));
-      Serial.printf("Set json... %s\n", Firebase.RTDB.setJSON(&fbdo, parentPath.c_str(), &json) ? "ok" : fbdo.errorReason().c_str());
+      json.set(timePath, timestamp_string);
+
+      // Send data to database
+      unsigned long start_send = millis(); 
+      Firebase.RTDB.setJSON(&fbdo, parentPath.c_str(), &json);
+      unsigned long end = millis();
+      Serial.printf("Database Set Time: %d ms\n", end - start_set);
+      Serial.printf("Database Send Time: %d ms\n", end - start_send);
+
     }
   }
 }
@@ -140,7 +143,7 @@ void setup()
 
   k_rip_timer = timerBegin(0, 80, true);
   timerAttachInterrupt(k_rip_timer, &timerIsr, true);
-  timerAlarmWrite(k_rip_timer, 10000, true); // genrerate interrupt every 10ms
+  timerAlarmWrite(k_rip_timer, (200 * 1000), true); // genrerate interrupt every 200ms
   timerAlarmEnable(k_rip_timer);
 
   // -------------------------------- Mutexes --------------------------------
@@ -193,12 +196,12 @@ void setup()
   // -------------------------------- Tasks --------------------------------
 
   xTaskCreate(
-    Database_Task, // Task function
-    "Database_Task", // Task name
+    PPG_Task, // Task function
+    "PPG_Task", // Task name
     10000, // Stack size
     NULL, // Parameters
-    0, // Priority
-    &Database_Task_Handle // Task handle
+    1, // Priority
+    &PPG_Task_Handle // Task handle
   );
 
   xTaskCreate(
@@ -206,17 +209,17 @@ void setup()
     "GSR_Task", // Task name
     10000, // Stack size
     NULL, // Parameters
-    1, // Priority
+    2, // Priority
     &GSR_Task_Handle // Task handle
   );
-
+  
   xTaskCreate(
-    PPG_Task, // Task function
-    "PPG_Task", // Task name
+    Database_Task, // Task function
+    "Database_Task", // Task name
     10000, // Stack size
     NULL, // Parameters
-    2, // Priority
-    &PPG_Task_Handle // Task handle
+    3, // Priority
+    &Database_Task_Handle // Task handle
   );
 
   vTaskStartScheduler();
