@@ -13,6 +13,9 @@
 #include <Firebase_ESP_Client.h>
 #include "time.h"
 
+#include <sys/time.h>
+#include <ctime>
+
 //----------------------------------------------------------------------------------
 
 // Provide the token generation process info.

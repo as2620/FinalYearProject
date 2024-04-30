@@ -101,17 +101,21 @@ void Init_Wifi()
 
 //----------------------------------------------------------------------------------
 
-unsigned long Get_Time() 
-{
-  // Function that gets current epoch time
-  time_t now;
-  struct tm timeinfo;
-  if (!getLocalTime(&timeinfo)) {
-    //Serial.println("Failed to obtain time");
-    return(0);
-  }
-  time(&now);
-  return now;
+String getTimestamp() {
+  // Get current time
+  struct timeval tv;
+  gettimeofday(&tv, NULL);
+
+  // Convert timestamp to datetime
+  time_t sec = tv.tv_sec;
+  struct tm *tm_info;
+  char datetime[26];
+  tm_info = localtime(&sec);
+  strftime(datetime, 26, "%Y-%m-%d %H:%M:%S", tm_info);
+
+  // Construct the timestamp string with microseconds
+  String timestamp = String(datetime) + "." + String(tv.tv_usec);
+  return timestamp;
 }
 
 //----------------------------------------------------------------------------------
@@ -128,15 +132,15 @@ void Database_Task(void *pvParameters)
       sendDataPrevMillis = millis();
 
       //Get current timestamp
-      timestamp = Get_Time();
+      String timestamp_string = getTimestamp();
       Serial.print ("time: ");
       Serial.println (timestamp);
 
-      parentPath= databasePath + "/" + String(timestamp);
+      parentPath= databasePath + "/" + timestamp_string;
 
       json.set(co2Path.c_str(), String(co2_value));
       json.set(vocPath.c_str(), String(voc_value));
-      json.set(timePath, String(timestamp));
+      json.set(timePath, timestamp_string);
       Serial.printf("Set json... %s\n", Firebase.RTDB.setJSON(&fbdo, parentPath.c_str(), &json) ? "ok" : fbdo.errorReason().c_str());
     }
   }
