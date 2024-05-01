@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/arthi/OneDrive/Documents/Imperial/Year_Four/Final_Year_Project/Embedded_Code_Simultaneous/ccs811_sensor_readout_esp32/src",
-      "program": "c:/Users/arthi/OneDrive/Documents/Imperial/Year_Four/Final_Year_Project/Embedded_Code_Simultaneous/ccs811_sensor_readout_esp32/src/build/Debug/outDebug",
+      "cwd": "c:/Users/arthi/OneDrive/Documents/Imperial/Year_Four/Final_Year_Project/Sensor_Readout_Data_Extraction_Code/FinalYearProject/ccs811_sensor_readout_esp32/src",
+      "program": "c:/Users/arthi/OneDrive/Documents/Imperial/Year_Four/Final_Year_Project/Sensor_Readout_Data_Extraction_Code/FinalYearProject/ccs811_sensor_readout_esp32/src/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

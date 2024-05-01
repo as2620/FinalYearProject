@@ -120,6 +120,7 @@ plt.show()
 # Display measures computed
 print('HR: ',m['bpm'])
 print('HRV: ', m['rmssd'])
+print(m)
 
 
 print('SPO2: %f' %ppg_spo2)
