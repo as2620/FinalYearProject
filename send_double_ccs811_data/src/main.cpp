@@ -23,17 +23,6 @@ void CCS_1_Task(void *pvParameters)
     {
       if(!ccs_1.readData())
       {
-        // Print timestamp
-        // Serial.print("Sensor 1");
-        // Serial.print(" ");
-        // Serial.print(esp_timer_get_time());
-        // Serial.print(" ");
-        // // Print CO2 value
-        // Serial.print(ccs_1.geteCO2());
-        // Serial.print(" ");  
-        // // Print TVOC value
-        // Serial.println(ccs_1.getTVOC());
-
         co2_value = ccs_1.geteCO2();
         voc_value = ccs_1.getTVOC();
       }
@@ -67,17 +56,6 @@ void CCS_2_Task(void *pvParameters)
     {
       if (!ccs_2.readData())
       {
-        // Print timestamp
-        // Serial.print("Sensor 2");
-        // Serial.print(" ");
-        // Serial.print(esp_timer_get_time());
-        // Serial.print(" ");
-        // // Print CO2 value
-        // Serial.print(ccs_2.geteCO2());
-        // Serial.print(" ");  
-        // // Print TVOC value
-        // Serial.println(ccs_2.getTVOC());
-
         co2_value = ccs_2.geteCO2();
         voc_value = ccs_2.getTVOC();
       }
@@ -133,15 +111,13 @@ void Database_Task(void *pvParameters)
 
       //Get current timestamp
       String timestamp_string = getTimestamp();
-      Serial.print ("time: ");
-      Serial.println (timestamp);
 
       parentPath= databasePath + "/" + timestamp_string;
 
       json.set(co2Path.c_str(), String(co2_value));
       json.set(vocPath.c_str(), String(voc_value));
       json.set(timePath, timestamp_string);
-      Serial.printf("Set json... %s\n", Firebase.RTDB.setJSON(&fbdo, parentPath.c_str(), &json) ? "ok" : fbdo.errorReason().c_str());
+      Firebase.RTDB.setJSONAsync(&fbdo, parentPath.c_str(), &json);
     }
   }
 }
