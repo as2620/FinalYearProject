@@ -30,14 +30,14 @@ void setup()
 {
   Serial.begin(115200);
 
-  Serial.println("CCS811 test");
+  Serial.println("LOG: CCS811 test");
   
   // Enable I2C
   Wire.begin(); 
 
   if(!ccs.begin())
   {
-    Serial.println("Failed to start sensor! Please check your wiring.");
+    Serial.println("ERROR: Failed to start sensor! Please check your wiring.");
     while(1);
   }
 

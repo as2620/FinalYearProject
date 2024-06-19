@@ -28,13 +28,13 @@
 //------------------------------------------------------------------------------------------------
 
 // Define Pulse Counter Parameters
-#define PCNT_COUNT_UNIT_0       PCNT_UNIT_0             // Set Pulse Counter Unit
-#define PCNT_COUNT_UNIT_1       PCNT_UNIT_1             // Set Pulse Counter Unit
-#define PCNT_COUNT_CHANNEL      PCNT_CHANNEL_0          // Set Pulse Counter channel
+#define PCNT_COUNT_UNIT_0                     PCNT_UNIT_0             // Set Pulse Counter Unit
+#define PCNT_COUNT_UNIT_1                     PCNT_UNIT_1             // Set Pulse Counter Unit
+#define PCNT_COUNT_CHANNEL                    PCNT_CHANNEL_0          // Set Pulse Counter channel
 
-#define PCNT_INPUT_SIG_IO_0     GPIO_NUM_34             // Set Pulse Counter input - Freq Meter Input
-#define PCNT_INPUT_SIG_IO_1     GPIO_NUM_35             // Set Pulse Counter input - Freq Meter Input
-const uint32_t PCNT_H_LIM_VAL   = 32000;                // Max Pulse Counter value 32000
+#define PCNT_INPUT_SIG_IO_0                   GPIO_NUM_34             // Set Pulse Counter input - Freq Meter Input
+#define PCNT_INPUT_SIG_IO_1                   GPIO_NUM_35             // Set Pulse Counter input - Freq Meter Input
+const uint32_t PCNT_H_LIM_VAL                 = 32000;                // Max Pulse Counter value 32000
 
 //------------------------------------------------------------------------------------------------
 

@@ -1,22 +1,33 @@
+//------------------------------------------------------------------------------------------------
+
+// Readout Code for Sending Two CCS811 Sensors Connected to an ESP32.
+// Each sensor is dedicated its own core and take alternating readings. This results in a total
+// sampling rate of 8Hz. Data is then sent to a Firebase Realtime Database.
+
+//------------------------------------------------------------------------------------------------
 
 #include "../include/main.hpp"
 
-//----------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
 
-void CCS_1_Task(void *pvParameters)
+void CCS1Task(void *pvParameters)
 {
-  Serial.print("Task1 running on core ");
+  Serial.print("LOG: Task 1 running on core ");
   Serial.println(xPortGetCoreID());
 
   if(!ccs_1.begin())
   {
-    Serial.println("Failed to start sensor! Please check your wiring.");
+    Serial.println("ERROR: Failed to start sensor! Please check your wiring.");
     while(1);
   }
 
+  // Set the measurement mode to read every 250ms
   ccs_1.setDriveMode(CCS811_DRIVE_MODE_250MS);
+
+  // Wait for the sensor to be ready
   while(!ccs_1.available());
 
+  // Read data from the sensor
   while(1)
   {
     if(ccs_1.available())
@@ -30,26 +41,27 @@ void CCS_1_Task(void *pvParameters)
   }
 }
 
-//----------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
 
-void CCS_2_Task(void *pvParameters)
+void CCS2Task(void *pvParameters)
 {
-  Serial.print("Task2 running on core ");
+  Serial.print("LOG: Task 2 running on core ");
   Serial.println(xPortGetCoreID());
   
-  // (2) Intialise the second CCS sensor (using the second I2C bus
+  // Intialise the second CCS sensor (using the second I2C bus
   if(!ccs_2.begin(0x5A, &I2C_CCS_2))
   {
-    Serial.println("Failed to start sensor! Please check your wiring.");
+    Serial.println("ERROR: Failed to start sensor! Please check your wiring.");
     while(1);
   }
 
-  // (3) Set the measurement mode
+  // Set the measurement mode to read every 250ms
   ccs_2.setDriveMode(CCS811_DRIVE_MODE_250MS);
   
-  // (4) Wait for the sensor to be ready
+  // Wait for the sensor to be ready
   while(!ccs_2.available());
 
+  // Read data from the sensor
   while(1)
   {
     if(ccs_2.available())
@@ -63,23 +75,30 @@ void CCS_2_Task(void *pvParameters)
   }
 }
 
-//----------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
 
-void Init_Wifi()
+void InitWifi()
 {
+  // Connect to WiFi
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-  Serial.print("Connecting to WiFi ..");
-  while (WiFi.status() != WL_CONNECTED) {
+  Serial.print("LOG: Connecting to WiFi ..");
+
+  // Wait until the connection is established
+  while (WiFi.status() != WL_CONNECTED) 
+  {
     Serial.print('.');
     delay(1000);
   }
+
+  // Print the local IP address
   Serial.println(WiFi.localIP());
   Serial.println();
 }
 
-//----------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
 
-String getTimestamp() {
+String getTimestamp() 
+{
   // Get current time
   struct timeval tv;
   gettimeofday(&tv, NULL);
@@ -96,121 +115,127 @@ String getTimestamp() {
   return timestamp;
 }
 
-//----------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
 
 void Database_Task(void *pvParameters)
 {
-  Serial.print("Task 3 running on core ");
+  Serial.print("LOG: Task 3 running on core ");
   Serial.println(xPortGetCoreID());
 
   while (1)
   {    
     // Send new readings to database
-    if (Firebase.ready() && (millis() - sendDataPrevMillis > timerDelay || sendDataPrevMillis == 0)){
+    if (Firebase.ready() && (millis() - sendDataPrevMillis > timerDelay || sendDataPrevMillis == 0))
+    {
       sendDataPrevMillis = millis();
 
       //Get current timestamp
       String timestamp_string = getTimestamp();
 
+      // Construct the JSON object
       parentPath= databasePath + "/" + timestamp_string;
 
       json.set(co2Path.c_str(), String(co2_value));
       json.set(vocPath.c_str(), String(voc_value));
       json.set(timePath, timestamp_string);
+
+      // Send the data to the database 
       Firebase.RTDB.setJSONAsync(&fbdo, parentPath.c_str(), &json);
     }
   }
 }
 
-//----------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
 
 void setup() 
 {
   Serial.begin(115200);
-  Serial.println("CCS811 Double Test");
+  Serial.println("LOG: Send CCS811 Double Test");
 
-  //-------------------------------- Setup I2C Communication --------------------------------
-
+  // Setup I2C Communication 
   // First CSS Sensor:
-  // (1) Enable I2C
   Wire.begin(); 
 
   // Second CSS Sensor:
-  // (1) Enable I2C since the two sensors have the same address
   I2C_CCS_2.begin(I2C_SDA_2, I2C_SCL_2, 400);
 
-  // -------------------------------- WiFi and Database --------------------------------
+  // ------------------------------------- WiFi and Database --------------------------------------
 
-  Init_Wifi();
+  InitWifi();
   configTime(0, 0, ntpServer);
 
-  // Assign the api key (required)
+  // Assign the api key 
   config.api_key = API_KEY;
 
   // Assign the user sign in credentials
   auth.user.email = USER_EMAIL;
   auth.user.password = USER_PASSWORD;
 
-  // Assign the RTDB URL (required)
+  // Assign the RTDB URL
   config.database_url = DATABASE_URL;
 
   Firebase.reconnectWiFi(true);
   fbdo.setResponseSize(4096);
 
-  // Assign the callback function for the long running token generation task */
-  config.token_status_callback = tokenStatusCallback; //see addons/TokenHelper.h
+  // Assign the callback function for the long running token generation task
+  config.token_status_callback = tokenStatusCallback; 
 
   // Assign the maximum retry of token generation
   config.max_token_generation_retry = 5;
 
-  // Initialize the library with the Firebase authen and config
+  // Initialise the library with the Firebase authen and config
   Firebase.begin(&config, &auth);
 
   // Getting the user UID might take a few seconds
-  Serial.println("Getting User UID");
-  while ((auth.token.uid) == "") {
+  Serial.println("LOG: Getting User UID");
+  while ((auth.token.uid) == "") 
+  {
     Serial.print('.');
     delay(1000);
   }
+  
   // Print user UID
   uid = auth.token.uid.c_str();
-  Serial.print("User UID: ");
+  Serial.print("INFO: User UID: ");
   Serial.println(uid);
 
   // Update database path
   databasePath = "/UsersData/" + uid + "/mask_data";
 
-  // -------------------------------- Tasks --------------------------------
+  // ------------------------------------------- Tasks --------------------------------------------
+
   // Create a task for the first sensor
-  xTaskCreatePinnedToCore(
-    CCS_1_Task, // Task function
-    "CCS_1_Task", // Task name
-    10000, // Stack size
-    NULL, // Parameters
-    2, // Priority
-    &CCS_1_Task_Handle, // Task handle
-    0 // Core
+  xTaskCreatePinnedToCore
+  (
+    CCS1Task,                       // Task function
+    "CCS1Task",                     // Task name
+    10000,                          // Stack size
+    NULL,                           // Parameters
+    2,                              // Priority
+    &CCS_1_Task_Handle,             // Task handle
+    0                               // Core
   );
 
   // Create a task for the second sensor
-  xTaskCreatePinnedToCore(
-    CCS_2_Task, // Task function
-    "CCS_2_Task", // Task name
-    10000, // Stack size
-    NULL, // Parameters
-    2, // Priority
-    &CCS_2_Task_Handle, // Task handle
-    1 // Core
+  xTaskCreatePinnedToCore
+  (
+    CCS2Task,                       // Task function
+    "CCS2Task",                     // Task name
+    10000,                          // Stack size
+    NULL,                           // Parameters
+    2,                              // Priority
+    &CCS_2_Task_Handle,             // Task handle
+    1                               // Core
   );
 
   // Create a task for the database
   xTaskCreate(
-    Database_Task, // Task function
-    "Database_Task", // Task name
-    10000, // Stack size
-    NULL, // Parameters
-    3, // Priority
-    &Database_Task_Handle // Task handle
+    Database_Task,                  // Task function
+    "Database_Task",                // Task name
+    10000,                          // Stack size
+    NULL,                           // Parameters
+    3,                              // Priority
+    &Database_Task_Handle           // Task handle
   );
 }
 

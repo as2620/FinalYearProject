@@ -41,15 +41,15 @@ TaskHandle_t CCS_2_Task_Handle;
 
 //------------------------------------------------------------------------------------------------
 
-void CCS_1_Task(void *pvParameters)
+void CCS1Task(void *pvParameters)
 {
-  Serial.print("Task1 running on core ");
+  Serial.print("LOG: Task 1 running on core ");
   Serial.println(xPortGetCoreID());
 
   // Intialise the first CCS sensor using the first I2C bus
   if(!ccs_1.begin())
   {
-    Serial.println("Failed to start sensor! Please check your wiring.");
+    Serial.println("ERROR: Failed to start sensor 1! Please check your wiring.");
     while(1);
   }
 
@@ -84,15 +84,15 @@ void CCS_1_Task(void *pvParameters)
 
 //------------------------------------------------------------------------------------------------
 
-void CCS_2_Task(void *pvParameters)
+void CCS2Task(void *pvParameters)
 {
-  Serial.print("Task2 running on core ");
+  Serial.print("LOG: Task 2 running on core ");
   Serial.println(xPortGetCoreID());
   
   // Intialise the second CCS sensor using the second I2C bus
   if(!ccs_2.begin(0x5A, &I2C_CCS_2))
   {
-    Serial.println("Failed to start sensor! Please check your wiring.");
+    Serial.println("ERROR: Failed to start sensor 2! Please check your wiring.");
     while(1);
   }
 
@@ -145,25 +145,25 @@ void setup()
   // Create a task for the first sensor
   xTaskCreatePinnedToCore
   (
-    CCS_1_Task,                     // Task name
-    "CCS_1_Task",                   // Task name
-    10000,                          // Stack size
-    NULL,                           // Parameters
-    2,                              // Priority
-    &CCS_1_Task_Handle,             // Task handle
-    0                               // Core
+    CCS1Task,                     // Task name
+    "CCS1Task",                   // Task name
+    10000,                        // Stack size
+    NULL,                         // Parameters
+    2,                            // Priority
+    &CCS_1_Task_Handle,           // Task handle
+    0                             // Core
   );
 
   // Create a task for the second sensor
   xTaskCreatePinnedToCore
   (
-    CCS_2_Task,                     // Task function
-    "CCS_2_Task",                   // Task name
-    10000,                          // Stack size
-    NULL,                           // Parameters
-    2,                              // Priority
-    &CCS_2_Task_Handle,             // Task handle
-    1                               // Core
+    CCS2Task,                     // Task function
+    "CCS2Task",                   // Task name
+    10000,                        // Stack size
+    NULL,                         // Parameters
+    2,                            // Priority
+    &CCS_2_Task_Handle,           // Task handle
+    1                             // Core
   );
 }
 

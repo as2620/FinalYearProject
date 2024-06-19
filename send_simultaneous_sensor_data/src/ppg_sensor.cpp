@@ -1,8 +1,15 @@
+//-------------------------------------------------------------------------------------------------
+
+// Source File for PPG Sensor Class
+
+//-------------------------------------------------------------------------------------------------
+
 #include "../include/ppg_sensor.hpp"
 
-//----------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 
-PpgSensor::PpgSensor(byte ledBrightness, byte sampleAverage, byte ledMode, byte sampleRate, int pulseWidth, int adcRange)
+PpgSensor::PpgSensor(byte ledBrightness, byte sampleAverage, byte ledMode, byte sampleRate, 
+                     int pulseWidth, int adcRange)
 {
     this->ledBrightness = ledBrightness;
     this->sampleAverage = sampleAverage;
@@ -12,25 +19,25 @@ PpgSensor::PpgSensor(byte ledBrightness, byte sampleAverage, byte ledMode, byte 
     this->adcRange = adcRange;
 }
 
-//----------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 
 bool PpgSensor::intialise()
 {
-    // Initialize sensor
+    // Initialise sensor
     // Use default I2C port, 400kHz speed
     if (!this->particleSensor.begin(Wire, I2C_SPEED_FAST))
     {
         return false;
     }
 
-    // Setup to sense the MAX30105
-    this->particleSensor.setup(this->ledBrightness, this->sampleAverage, this->ledMode, this->sampleRate, this->pulseWidth, this->adcRange);
+    // Setup to sense the MAX3010x sensor
+    this->particleSensor.setup(this->ledBrightness, this->sampleAverage, this->ledMode, 
+                               this->sampleRate, this->pulseWidth, this->adcRange);
 
     return true;
-
 }
 
-//----------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 
 void PpgSensor::read()
 {
@@ -38,4 +45,4 @@ void PpgSensor::read()
     ir_value = particleSensor.getIR();
 }
 
-//----------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------

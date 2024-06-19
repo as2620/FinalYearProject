@@ -1,9 +1,15 @@
+//-------------------------------------------------------------------------------------------------
+
+// Source File for K-RIP Sensor Class
+
+//-------------------------------------------------------------------------------------------------
 
 #include "../include/k_rip_sensor.hpp"
 
-//----------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 
-KRipSensor::KRipSensor(pcnt_unit_t pulse_counter_unit, pcnt_channel_t pulse_counter_channel, uint8_t pulse_counter_signal, uint8_t pulse_counter_control)
+KRipSensor::KRipSensor(pcnt_unit_t pulse_counter_unit, pcnt_channel_t pulse_counter_channel, 
+                       uint8_t pulse_counter_signal, uint8_t pulse_counter_control)
 {
     this->pulse_counter_unit = pulse_counter_unit;
     this->pulse_counter_channel = pulse_counter_channel;
@@ -11,7 +17,7 @@ KRipSensor::KRipSensor(pcnt_unit_t pulse_counter_unit, pcnt_channel_t pulse_coun
     this->pulse_counter_control = pulse_counter_control;
 }
 
-//----------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 
 void KRipSensor::intialise()
 {
@@ -20,10 +26,7 @@ void KRipSensor::intialise()
 
     // Pulse input GPIO - Freq Meter Input
     pcnt_config.pulse_gpio_num = this->pulse_counter_signal; 
-
-    // Control signal input GPIO                        
-    // pcnt_config.ctrl_gpio_num = this->pulse_counter_control;   
-
+ 
     //  Pulse Counter, Counting Unit                      
     pcnt_config.unit = this->pulse_counter_unit;   
 
@@ -53,23 +56,16 @@ void KRipSensor::intialise()
     pcnt_counter_resume(this->pulse_counter_unit);                                                
 }
 
-//----------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 
 void KRipSensor::read()
 {
     pcnt_counter_pause(this->pulse_counter_unit);
 
     int16_t pulses = 0;    
-    // uint32_t mult = mult_pulses;
-
-    // Clear overflow counter
-    // mult_pulses = 0;    
 
     // Read Pulse Counter value                                                  
-    pcnt_get_counter_value(this->pulse_counter_unit, &pulses);                                                                   
-
-    // Calculate the frequency based of the pulse counter readings
-    // frequency = (pulses + (mult * overflow)) ;                                                         
+    pcnt_get_counter_value(this->pulse_counter_unit, &pulses);                                                                                                                          
 
     frequency = pulses;
 
@@ -80,4 +76,4 @@ void KRipSensor::read()
     pcnt_counter_resume(this->pulse_counter_unit);         
 }
 
-//----------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
