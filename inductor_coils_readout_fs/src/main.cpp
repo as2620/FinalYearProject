@@ -1,56 +1,65 @@
+//------------------------------------------------------------------------------------------------
+
+// Readout Code for K-RIP Coils Connected to an ESP32.
+// The code reads the frequency of the top and bottom coils and prints it to the serial monitor.
+// This is achieved by using the Pulse Counter Peripheral in the ESP32 to count the number of edges.
+
+//------------------------------------------------------------------------------------------------
+
+// Pulse Counters in the ESP32 
+// This piece of code makes use of the Pulse Counter Peripheral in the ESP32. The Pulse Counters 
+// count the number edges of the waveform that pass during a set interval of time. This changes 
+// as the frequency of the waveform changes. 
+
+// How Do Pulse Counters Work? 
+// Pulse Counters in the ESP32 require the programmer to select a unit. A unit has two channels, 
+// one that can increment the counter and the other that can decrement the counter on a falling or 
+// rising edge. Pulse Counters can be configured to do something on either or both edges. The Control 
+// Signal is used to control the counting mode of the edge signals that are attached to the same 
+// channel. 
+
+//------------------------------------------------------------------------------------------------
+
 #include "Arduino.h"
 #include "stdio.h"                                                        
 #include "driver/pcnt.h"                                                  
 #include "soc/pcnt_struct.h"
 
-//----------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
 
-// Pulse Counters in the ESP32 
-// This piece of code makes use of the Pulse Counter Peripheral in the ESP32. The 
-// Pulse Counters count the number edges of the waveform that pass during a set interval 
-// of time. This changes as the frequency of the waveform changes. 
-
-// How Do Pulse Counters Work? 
-// Pulse Counters in the ESP32 require the programmer to select a unit. 
-// A unit has two channels, one that can increment the counter and the other that can decrement 
-// the counter on a falling or rising edge.
-// Pulse Counters can be configured to do something on either or both edges. 
-// The Control Signal is used to control the counting mode of the edge signals that are 
-// attached to the same channel. 
-
-
-//----------------------------------------------------------------------------------
-
+// Define Pulse Counter Parameters
 #define PCNT_COUNT_UNIT_0       PCNT_UNIT_0             // Set Pulse Counter Unit
 #define PCNT_COUNT_UNIT_1       PCNT_UNIT_1             // Set Pulse Counter Unit
 #define PCNT_COUNT_CHANNEL      PCNT_CHANNEL_0          // Set Pulse Counter channel
 
 #define PCNT_INPUT_SIG_IO_0     GPIO_NUM_34             // Set Pulse Counter input - Freq Meter Input
-#define PCNT_INPUT_CTRL_IO_0    GPIO_NUM_32             // Set Pulse Counter Control GPIO pin - HIGH = count up, LOW = count down  
-#define PCNT_INPUT_SIG_IO_1     GPIO_NUM_35            // Set Pulse Counter input - Freq Meter Input
-#define PCNT_INPUT_CTRL_IO_1    GPIO_NUM_33             // Set Pulse Counter Control GPIO pin - HIGH = count up, LOW = count down  
-#define PCNT_H_LIM_VAL          32000                   // Overflow of Pulse Counter 
+#define PCNT_INPUT_SIG_IO_1     GPIO_NUM_35             // Set Pulse Counter input - Freq Meter Input
+const uint32_t PCNT_H_LIM_VAL   = 32000;                // Max Pulse Counter value 32000
 
-//----------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
 
-volatile bool flag                  = true;             // Flag to enable print frequency reading
-const uint32_t overflow             = 32000;            // Max Pulse Counter value 32000
-volatile uint32_t mult_pulses_0     = 0;                // Number of overflows of PCNT
-volatile uint32_t mult_pulses_1     = 0;                // Number of overflows of PCNT
-volatile int64_t esp_time          = 0;                 // Time elapsed in microseconds since boot
-volatile int64_t esp_time_interval = 0;                 // Actual time between 2 samples (should be close to sample_time)
-const uint32_t sample_time         = 10000;             // Sample time in microseconds to count pulses
-volatile uint32_t frequency_top     = 0;                // Frequency value for top coil 
-volatile uint32_t frequency_bottom  = 0;                // Frequency value for bottom coil
+// Number of overflows of PCNT
+volatile uint32_t mult_pulses_0               = 0;                // Number of overflows of PCNT
+volatile uint32_t mult_pulses_1               = 0;                // Number of overflows of PCNT
 
-portMUX_TYPE timerMux = portMUX_INITIALIZER_UNLOCKED;   // portMUX_TYPE to do synchronisation
+// Time variables
+volatile int64_t esp_time                     = 0;                // Time elapsed in microseconds since boot
+volatile int64_t esp_time_interval            = 0;                // Actual time between 2 samples (should be close to sample_time)
 
-//---------------------------------------------------------------------------------
+const uint32_t sample_time                    = 10000;            // Sample time in microseconds to count pulses
 
-static void IRAM_ATTR pcnt_intr_handler(void *)                         
+// Coil frequency variables
+volatile uint32_t frequency_top               = 0;                // Frequency value for top coil 
+volatile uint32_t frequency_bottom            = 0;                // Frequency value for bottom coil
+
+// Mutex to do synchronisation
+portMUX_TYPE timerMux                         = portMUX_INITIALIZER_UNLOCKED;   // portMUX_TYPE to do synchronisation
+
+//------------------------------------------------------------------------------------------------
+
+// Interrupt handler for counting overflow pulses
+static void IRAM_ATTR PcntIntrHandler(void *)                         
 {
-  // Interrupt handler for counting overflow pulses
-
   // Disable interrupt
   portENTER_CRITICAL_ISR(&timerMux);    
 
@@ -73,7 +82,7 @@ static void IRAM_ATTR pcnt_intr_handler(void *)
   portEXIT_CRITICAL_ISR(&timerMux);                                    
 }
 
-//---------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
 
 void writeDataToSerial()
 {
@@ -84,7 +93,7 @@ void writeDataToSerial()
   Serial.println(frequency_bottom);
 }
 
-//----------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
 
 void startCounters()
 {
@@ -93,13 +102,15 @@ void startCounters()
   pcnt_counter_resume(PCNT_COUNT_UNIT_1); 
 }
 
-//----------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
 
 void readCounters()
 {
+  // Pause Pulse Counters
   pcnt_counter_pause(PCNT_COUNT_UNIT_0); 
   pcnt_counter_pause(PCNT_COUNT_UNIT_1); 
 
+  // Get the current time
   const int64_t esp_time_now = esp_timer_get_time();
 
   int16_t pulses_0 = 0;
@@ -123,8 +134,8 @@ void readCounters()
   portEXIT_CRITICAL_ISR(&timerMux);  
 
   // Calculate the frequency based of the pulse counter readings
-  frequency_top = (pulses_0 + (mult_0 * overflow)) ;                                                         
-  frequency_bottom = (pulses_1 + (mult_1 * overflow)) ;    
+  frequency_top = (pulses_0 + (mult_0 * PCNT_H_LIM_VAL)) ;                                                         
+  frequency_bottom = (pulses_1 + (mult_1 * PCNT_H_LIM_VAL)) ;    
   
   // Clear Pulse Counter
   pcnt_counter_clear(PCNT_COUNT_UNIT_0);                   
@@ -134,18 +145,15 @@ void readCounters()
   esp_time_interval = esp_time_now - esp_time;
 }
 
-//----------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
 
-void initPulseCounter(pcnt_unit_t unit, int pcnt_input_sig_io, int pcnt_input_ctrl_io)                                                      // Initialize and run PCNT unit
+void initPulseCounter(pcnt_unit_t unit, int pcnt_input_sig_io)                                                      
 {
   // PCNT unit instance
   pcnt_config_t pcnt_config = {};                                        
 
   // Pulse input GPIO - Freq Meter Input
   pcnt_config.pulse_gpio_num = pcnt_input_sig_io; 
-
-  // Control signal input GPIO                        
-  // pcnt_config.ctrl_gpio_num = pcnt_input_ctrl_io;   
 
   //  Pulse Counter, Counting Unit                      
   pcnt_config.unit = unit;   
@@ -179,7 +187,7 @@ void initPulseCounter(pcnt_unit_t unit, int pcnt_input_sig_io, int pcnt_input_ct
   pcnt_intr_enable(unit);                                                 
 }
 
-//----------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
 
 void readPulseCounter(void *)                                               
 {
@@ -187,16 +195,16 @@ void readPulseCounter(void *)
   startCounters();                                                       
 }
 
-//----------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
 
 void initFrequencyMeter()
 {
   // Initialize and run Pulse Counter units
-  initPulseCounter(PCNT_COUNT_UNIT_0, PCNT_INPUT_SIG_IO_0, PCNT_INPUT_CTRL_IO_0);
-  initPulseCounter(PCNT_COUNT_UNIT_1, PCNT_INPUT_SIG_IO_1, PCNT_INPUT_CTRL_IO_1);
+  initPulseCounter(PCNT_COUNT_UNIT_0, PCNT_INPUT_SIG_IO_0);
+  initPulseCounter(PCNT_COUNT_UNIT_1, PCNT_INPUT_SIG_IO_1);
 
   // Setup Register ISR handler
-  pcnt_isr_register(pcnt_intr_handler, NULL, 0, NULL);                    
+  pcnt_isr_register(PcntIntrHandler, NULL, 0, NULL);                    
 
   // Create periodic timer to read out the Pulse Counter arguements, every 10ms (sampling_time)
   esp_timer_create_args_t create_args;
@@ -212,7 +220,7 @@ void initFrequencyMeter()
   startCounters();
 }
 
-//----------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
 
 void setup()
 {
@@ -220,12 +228,12 @@ void setup()
   initFrequencyMeter();  
 }
 
-//----------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
 
 void loop()
 {
   writeDataToSerial();
-  delay(10); // in milliseconds
+  delay(10);
 }
 
-//----------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
